@@ -1,5 +1,7 @@
 # I'm Quant Theodore Felix
 
+> [Korean README](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README.md)
+
 I am a member of Team **Quant**, which is redefining the paradigm of security in response to the advancement of information and communication technology and the rise of quantum computing.
 
 I focus on building future-oriented security solutions by combining high-performance backend architecture design with research on Post-Quantum Cryptography (PQC) algorithms.

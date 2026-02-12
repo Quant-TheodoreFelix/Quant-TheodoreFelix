@@ -1,5 +1,7 @@
 # 저는 Quant Theodore Felix 입니다
 
+> [English README](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README_EN.md)
+
 저는 정보통신 기술의 진보와 양자 컴퓨팅의 부상에 대응하여 보안의 패러다임을 재정의하고 있는 팀 **퀀트(Quant)** 에 소속되어 있습니다. 
 
 고성능 백엔드 아키텍처 설계와 양자-내성 암호(Post-Quantum Cryptography, PQC) 알고리즘 연구를 결합하여, 미래 지향적인 보안 솔루션을 구축하는 데 주력하고 있습니다.
