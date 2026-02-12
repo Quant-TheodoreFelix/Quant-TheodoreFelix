@@ -19,7 +19,7 @@ Although I belong to a team, I could also be described as quite a solitary devel
 
 I am diligently creating security tools such as [Entanglement Library](https://github.com/Quant-Off/entanglementlib) and [Poseidon](https://github.com/Quant-Off/poseidon). Beyond information security, I also build web applications (though I don't have much design sense). I frequently develop convenience items helpful to the general public (people whose main profession is not computer-related), as well as small utilities perfect for developers or content creators.
 
-~~*I haven't organized everything yet, but...*~~ You can refer to https://docs.qu4nt.space/projects for my major projects.
+~~*I haven't organized everything yet, but...*~~ You can refer to https://docs.qu4nt.space/en/docs/projects for my major projects.
 
 ## Tech Stack
 
