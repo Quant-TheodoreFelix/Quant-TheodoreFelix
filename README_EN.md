@@ -1,42 +1,45 @@
-# I'm Quant Theodore Felix
+# I am Quant Theodore Felix
 
 > [Korean README](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README.md)
 
-I am a member of Team **Quant**, which is redefining the paradigm of security in response to the advancement of information and communication technology and the rise of quantum computing.
+I am a member of [Team **Quant**](https://qu4nt.space/), which is redefining the paradigm of security in response to the advancement of information and communication technology and the rise of quantum computing.
 
-I focus on building future-oriented security solutions by combining high-performance backend architecture design with research on Post-Quantum Cryptography (PQC) algorithms.
+I am focused on building future-oriented security solutions through activities such as high-security infrastructure, compliance, Post-Quantum Cryptography (PQC), and classical cryptographic algorithm implementation.
 
-Although I belong to a team, I could also be described as quite a solitary developer...
+## Expertise and Core Competencies
 
-## Areas of Expertise & Core Competencies
+*   **Compliance & Architecture**: Capable of designing architectures that meet certification and compliance requirements up to NIST FIPS 140-2/3 L2~4 and CC (Common Criteria) EAL5+.
+*   **Security Engineering**: Possess a high understanding of Java JCA/JCE features. Also capable of developing software with memory safety and extreme security using Rust natively.
+*   **Quantum Information Science & Technology Research**: Have a solid foundation in quantum information science theory through rapid learning ability and curiosity honed from a young age. I am proud to say this is wisdom acquired in just six months.
 
-* **Quantum Security & Cryptography**: Practical implementation and optimization of next-generation post-quantum cryptography algorithms such as ML-KEM, ML-DSA, and SLH-DSA.
-* **System Engineering**: High-performance server development in Java 21+ environments and creation of memory-safe native libraries utilizing Rust.
-* **Advanced Interoperability**: Efficient integration between Java and native layers via the Java Linker API (Foreign Function & Memory API).
-* **Data Analysis-Based Business**: Establishment of data-driven personal business models through the construction of short-form and long-form content trend analysis platforms.
+## Major Ongoing Projects
 
-## Major Projects
+> [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) - Team Quant (Dec 2025 ~ Present) : **Lead Developer**
+- Engineered the Entanglement Library, designed security ratings of EAL2 and above for financial and large-scale enterprise applications, and efficiently connected Rust native code using Project Panama's Foreign Function & Memory API.
+- Implemented strict Zero-Trust principles, technically analyzed Java-Owned (JO) and Rust-Owned (RO) data allocation patterns to design secure Off-Heap memory interactions without external dependencies.
+- Applied single bottleneck pass-through technology based on FIPS 140-3 and implemented physical erasure (Zeroization) of sensitive data after performing security operations on the Rust side.
 
-I am diligently creating security tools such as [Entanglement Library](https://github.com/Quant-Off/entanglementlib) and [Poseidon](https://github.com/Quant-Off/poseidon). Beyond information security, I also build web applications (though I don't have much design sense). I frequently develop convenience items helpful to the general public (people whose main profession is not computer-related), as well as small utilities perfect for developers or content creators.
-
-~~*I haven't organized everything yet, but...*~~ You can refer to https://docs.qu4nt.space/en/docs/projects for my major projects.
+> [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) - Team Quant (Jan 2026 ~ Present) : **Lead Developer**
+- Built a Foreign Function Interface (FFI) boundary for secure communication with EntanglementLib (Java), and designed sensitive data wrapping structures usable in both JO and RO patterns.
+- Implemented Base64, Hex en/decoding, HKDF, HMAC, SHA-2, 3, SHAKE algorithms, and a Hash DRBG according to NIST SP 800-90Ar1.
+- Implemented a stable CC EAL4 and wrote architectural specifications for EAL5+ extension.
 
 ## Tech Stack
 
-I primarily work with Java and Rust languages.
+I primarily work with Java and Rust.
 
-| Category       | Details                                                                               |
-|----------------|---------------------------------------------------------------------------------------|
-| **Languages**  | Java(25+...), Rust, Kotlin, SQL                                                       |
-| **Frameworks** | Spring Boot, Minestom, React                                                          |
-| **Security**   | PQC, TLS Server, TOTP Authentication                                                  |
-| **DevOps**     | Gradle(Kotlin DSL), AWS, Cloudflare                                                   |
-| **Libraries**  | BouncyCastle, [entlib-native(Rust-based)](https://github.com/Quant-Off/entlib-native) |
+| Category               | Details                                                                                                   |
+|------------------------|-----------------------------------------------------------------------------------------------------------|
+| **Languages**          | Java, Rust                                                                                                |
+| **Tools & Ecosystems** | Gradle (Kotlin DSL), Cargo, Project Panama, Criterion, Valgrind, Git, CI/CD (Security Scanning), Postgres |
+| **DevOps**             | AWS, Cloudflare                                                                                           |
+
+If I have the chance, I would like to learn Go.
 
 ## Technical Philosophy
 
-In every stage of system development, I prioritize **top-level security capabilities** and **stability & performance** as the highest values. In any case, I prioritize 'stability' over 'convenience'.
+In all stages of system development, I prioritize **the highest level of security capability**, **stability, and performance** in my value judgments. In any case, 'stability' is prioritized over 'convenience'. This characteristic is similar to defensive programming, but I constantly review the code I write to design technology with a faster and more efficient flow in terms of performance.
 
-I particularly aim for code that ensures memory efficiency and thread safety. Although it is a strength that has been pushed to second place due to my belief in security as the number one priority, I am convinced that this is an essential virtue in precise fields such as quantum security.
+I have a goal of 'military and national agency-grade security'. This goal has naturally instilled the principle of 'Zero-Trust, Air-Gapped' in all my technical designs. I chose the path of security engineering with the hope that the information I want to protect is kept safe from everyone. Since 'oneself' may not be independent, I decided not to trust the source of any information obtainable from a system perspective.
 
-Currently, I am operating a business model to provide high-security quantum technology solutions derived from `EntanglementLib` to enterprises, governments, and military institutions, and I am building an ecosystem where technical excellence leads to trust.
+With this philosophy, I often hear that I am great, but I realize my own shortcomings every day. I strive to never stop thinking so that I can draw out what I think and communicate it to everyone.

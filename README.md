@@ -2,41 +2,44 @@
 
 > [English README](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README_EN.md)
 
-저는 정보통신 기술의 진보와 양자 컴퓨팅의 부상에 대응하여 보안의 패러다임을 재정의하고 있는 팀 **퀀트(Quant)** 에 소속되어 있습니다. 
+저는 정보통신 기술의 진보와 양자 컴퓨팅의 부상에 대응하여 [보안의 패러다임을 재정의하고 있는 팀 **퀀트(Quant)** 에 소속](https://qu4nt.space/)되어 있습니다. 
 
-고성능 백엔드 아키텍처 설계와 양자-내성 암호(Post-Quantum Cryptography, PQC) 알고리즘 연구를 결합하여, 미래 지향적인 보안 솔루션을 구축하는 데 주력하고 있습니다.
-
-팀에 소속되어 있지만, 꽤 고독한 개발자라고도 할 수 있겠네요...
+고보안 인프라, 컴플라이언스, 양자-내성 암호(Post-Quantum Cryptography, PQC), 고전 암호 알고리즘 구현 등의 활동으로 미래 지향적인 보안 솔루션을 구축하는 데 주력하고 있습니다.
 
 ## 전문 분야 및 핵심 역량
 
-* **양자 보안 및 암호학**: ML-KEM, ML-DSA, SLH-DSA 등 차세대 양자 내성 암호 알고리즘의 실무 구현 및 최적화.
-* **시스템 엔지니어링**: Java 21+ 환경에서의 고성능 서버 개발 및 Rust를 활용한 메모리 안전(memory safety) 기반 네이티브 라이브러리 제작.
-* **고급 상호 운용성**: Java Linker API(foreign function & memory api)를 통한 자바와 네이티브 레이어 간의 효율적인 통합.
-* **데이터 분석 기반 비즈니스**: 숏폼 및 롱폼 콘텐츠 트렌드 분석 플랫폼 구축을 통한 데이터 기반의 개인사업 모델 수립.
+* **컴플라이언스 및 아키텍처**: NIST FIPS 140-2/3 L2~4, CC(Common Criteria) EAL5+ 까지 인증 및 규정 준수 사항을 만족하는 아키텍처 설계가 가능합니다.
+* **보안 엔지니어링**: Java JCA/JCE 기능에 대해 높은 이해도를 가집니다. 또한 Rust 언어를 네이티브로 사용하여 메모리 안정성 및 극도의 보안성을 가진 소프트웨어를 개발할 수도 있습니다.
+* **양자정보과학기술 연구**: 빠른 습득력과 어릴 때부터 연마한 호기심을 통해 양자정보과학 이론의 기초가 단단합니다. 이는 단 6개월만에 습득한 지혜라고 자부할 수 있습니다.
 
-## 주요 프로젝트
+## 진행 중인 주요 프로젝트
 
-[얽힘 라이브러리](https://github.com/Quant-Off/entanglementlib)나 [포세이돈](https://github.com/Quant-Off/poseidon)과 같은 보안 도구들을 열심히 만들어내고 있습니다. 정보보안 뿐 아니라 (디자인엔 크게 센스 없지만) 웹 애플리케이션도 만들고 있습니다. 주로 일반 사람들에게(주요 직업이 컴퓨터 관련이 아닌 사람들에게) 도움이 될 만한 편의성 아이템이나, 개발자나 컨텐츠 제작자에게 안성맞춤인 소소한 유틸리티 등의 개발도 자주 진행합니다.
+> [얽힘 라이브러리(EntanglementLib, Java)](https://github.com/Quant-Off/entanglementlib) - Team Quant (2025.12 ~ 진행 중) : **리드 개발자**
+- 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 EAL2 이상의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API로 효율적으로 연결.
+- 엄격한 Zero-Trust 원칙 구현, Java측 데이터 할당(Java-Owned, JO), Rust측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계.
+- FIPS 140-3에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
 
-~~*아직 모두 정리하진 않았지만...*~~ 주요 프로젝트에 대해 https://docs.qu4nt.space/docs/projects 를 참고하실 수 있습니다.
+> [entlib-native(Rust)](https://github.com/Quant-Off/entlib-native) - Team Quant (2026.1 ~ 진행 중) : **리드 개발자**
+- 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계.
+- Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1에 따른 Hash DRBG 구현
+- 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
 
 ## 기술 스택
 
 저는 기본적으로 Java 및 Rust 언어를 다룹니다.
 
-| 구분             | 상세 내용                                                                                 |
-|----------------|---------------------------------------------------------------------------------------|
-| **Languages**  | Java(25+...), Rust, Kotlin, SQL                                                       |
-| **Frameworks** | Spring Boot, Minestom, React                                                          |
-| **Security**   | PQC, TLS Server, TOTP Authentication                                                  |
-| **DevOps**     | Gradle(Kotlin DSL), AWS, Cloudflare                                                   |
-| **Libraries**  | BouncyCastle, [entlib-native(Rust-based)](https://github.com/Quant-Off/entlib-native) |
+| 구분                     | 상세 내용                                                                                         |
+|------------------------|-----------------------------------------------------------------------------------------------|
+| **Languages**          | Java, Rust                                                                                    |
+| **Tools & Ecosystems** | Gradle (Kotlin DSL), Cargo, Project Panama, Criterion, Valgrind, Git, CI/CD(보안 스캐닝), Postgres |
+| **DevOps**             | AWS, Cloudflare                                                                               |
+
+여유가 생긴다면 Go 언어를 사용해보고 싶습니다.
 
 ## 기술 철학
 
-저는 시스템 개발의 모든 단계에서 **최고 수준의 보안 능력**과 **안정성 및 성능**(stability & performance)을 최우선으로 가치 판단을 내립니다. 어떠한 경우에도 '편의성'보단 '안정성'을 우선시합니다.
+저는 시스템 개발의 모든 단계에서 **최고 수준의 보안 능력**과 **안정성 및 성능**(stability & performance)을 최우선으로 가치 판단을 내립니다. 어떠한 경우에도 '편의성'보단 '안정성'을 우선시합니다. 이러한 특성은 방어적 프로그래밍과 유사하지만, 성능 면에서도 좀 더 빠르고 효율적인 흐름을 가진 기술을 설계하기 위해 작성한 코드를 끊임없이 검토합니다.
 
-특히 메모리 효율성과 스레드-안전(thread-safe)을 보장하는 코드를 지향합니다. 보안 1순위 신념에 따라 2순위로 밀린 강점이지만, 이는 양자 보안과 같은 정밀한 분야에서 필수적인 덕목이라 확신합니다.
+'군사 및 국가기관급 보안' 이라는 목표를 가지고 있습니다. 이 목표는 저의 모든 기술 설계에 '아무것도 믿지 말고(Zero-Trust), 독립되어라(Air-Gapped)' 라는 원칙을 자연스레 심어주었습니다. 저는 자신이 지키고자 하는 정보가 어느 누구로부터든 안전하게 지켜졌으면 하는 바램에서 보안 엔지니어링 길을 선택했고, '자신'이라 함은 독립적이지 않을 수 있다는 것을 명확히 하기 때문에 시스템 관점에서 얻을 수 있는 모든 정보의 출처를 믿지 않기로 결정했습니다.
 
-현재 저는 `EntanglementLib`에서 파생된 고보안 양자 기술 솔루션을 기업 및 정부, 군사 기관에 제공하기 위한 비즈니스 모델을 구동 중이며, 기술적 탁월함이 곧 신뢰로 이어지는 생태계를 구축하고 있습니다.
+이런 철학으로 볼 때, 대단하다는 말을 자주 들었지만 스스로 부족한 점을 매일 깨닫습니다. 생각하는 것을 그려내고 모두에게 전달할 수 있도록 매 시간 생각을 멈추지 않으려 노력합니다.
