@@ -1,45 +1,82 @@
-# 저는 Quant Theodore Felix 입니다
+<div align="center">
 
-> [English README](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README_EN.md)
+# Quant Theodore Felix
 
-저는 정보통신 기술의 진보와 양자 컴퓨팅의 부상에 대응하여 [보안의 패러다임을 재정의하고 있는 팀 **퀀트(Quant)** 에 소속](https://qu4nt.space/)되어 있습니다. 
+**Redefining the Paradigm of Security in the Quantum Era**
 
-고보안 인프라, 컴플라이언스, 양자-내성 암호(Post-Quantum Cryptography, PQC), 고전 암호 알고리즘 구현 등의 활동으로 미래 지향적인 보안 솔루션을 구축하는 데 주력하고 있습니다.
+[![English Badge](https://img.shields.io/badge/Read_in-English-blue?style=for-the-badge&logo=googletranslate&logoColor=white)](https://github.com/Quant-TheodoreFelix/Quant-TheodoreFelix/blob/main/README_EN.md)
+[![Quant Github](https://img.shields.io/badge/Quant_Off-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Quant-Off/)
+[![Quant Front](https://img.shields.io/badge/Site-Quant_Off-FFFFFF?style=for-the-badge)](https://qu4nt.space/)
 
-## 전문 분야 및 핵심 역량
+</div>
 
-* **컴플라이언스 및 아키텍처**: NIST FIPS 140-2/3 L2~4, CC(Common Criteria) EAL5+ 까지 인증 및 규정 준수 사항을 만족하는 아키텍처 설계가 가능합니다.
-* **보안 엔지니어링**: Java JCA/JCE 기능에 대해 높은 이해도를 가집니다. 또한 Rust 언어를 네이티브로 사용하여 메모리 안정성 및 극도의 보안성을 가진 소프트웨어를 개발할 수도 있습니다.
-* **양자정보과학기술 연구**: 빠른 습득력과 어릴 때부터 연마한 호기심을 통해 양자정보과학 이론의 기초가 단단합니다. 이는 단 6개월만에 습득한 지혜라고 자부할 수 있습니다.
+---
 
-## 진행 중인 주요 프로젝트
+*“신뢰를 버리고 고립을 선택하라.”*
 
-> [얽힘 라이브러리(EntanglementLib, Java)](https://github.com/Quant-Off/entanglementlib) - Team Quant (2025.12 ~ 진행 중) : **리드 개발자**
-- 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 EAL2 이상의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API로 효율적으로 연결.
-- 엄격한 Zero-Trust 원칙 구현, Java측 데이터 할당(Java-Owned, JO), Rust측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계.
-- FIPS 140-3에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
+정보통신 기술의 진보와 양자 컴퓨팅의 부상에 대응하여 보안의 패러다임을 재정의하고 있는 **팀 퀀트(Quant)** 소속 리드 개발자입니다. 고보안 인프라, 컴플라이언스, 고전 및 양자-내성 암호(Post-Quantum Cryptography) 알고리즘의 안전한 구현을 통해 미래 지향적인 보안 솔루션을 구축하는 데 주력하고 있습니다.
 
-> [entlib-native(Rust)](https://github.com/Quant-Off/entlib-native) - Team Quant (2026.1 ~ 진행 중) : **리드 개발자**
-- 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계.
-- Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1에 따른 Hash DRBG 구현
-- 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
+[![GitHub Streak](https://streak-stats.demolab.com?user=Quant-TheodoreFelix&theme=github-dark-blue&hide_border=true&locale=ko&mode=weekly&card_width=1024)](https://streak-stats.demolab.com/demo/?user=Quant-TheodoreFelix&theme=github-dark-blue&hide_border=true&border_radius=4.5&locale=ko&short_numbers=false&date_format=&mode=weekly&exclude_days=&sections=total%2Ccurrent%2Clongest&card_width=1024&card_height=195&type=svg&background-type=solid&properties=background)
 
-## 기술 스택
+## Core Competencies
 
-저는 기본적으로 Java 및 Rust 언어를 다룹니다.
+- **컴플라이언스 및 아키텍처**
+  - NIST FIPS 140-2/3 L2~4, CC(Common Criteria) EAL5+ 까지 인증 및 규정 준수 사항을 만족하는 아키텍처 설계가 가능합니다.
+- **보안 엔지니어링**
+  - Java JCA/JCE 기능에 대해 높은 이해도를 가집니다. 또한 Rust 언어를 네이티브로 사용하여 메모리 안정성 및 극도의 보안성을 가진 소프트웨어를 개발할 수도 있습니다.
+- **양자정보과학기술 연구**
+  - 빠른 습득력과 어릴 때부터 연마한 호기심을 통해 양자정보과학 이론의 기초가 단단합니다. 이는 단 6개월만에 습득한 지혜라고 자부할 수 있습니다.
 
-| 구분                     | 상세 내용                                                                                         |
-|------------------------|-----------------------------------------------------------------------------------------------|
-| **Languages**          | Java, Rust                                                                                    |
-| **Tools & Ecosystems** | Gradle (Kotlin DSL), Cargo, Project Panama, Criterion, Valgrind, Git, CI/CD(보안 스캐닝), Postgres |
-| **DevOps**             | AWS, Cloudflare                                                                               |
+## Key Projects
 
-여유가 생긴다면 Go 언어를 사용해보고 싶습니다.
+### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
 
-## 기술 철학
+> 금융 및 대규모 엔터프라이즈, 군사급 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 진행 중)
+- **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
+- **Features**:
+    - 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 EAL2 이상의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API로 효율적으로 연결. 
+    - 엄격한 Zero-Trust 원칙 구현, Java측 데이터 할당(Java-Owned, JO), Rust측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계. 
+    - FIPS 140-3에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
 
-저는 시스템 개발의 모든 단계에서 **최고 수준의 보안 능력**과 **안정성 및 성능**(stability & performance)을 최우선으로 가치 판단을 내립니다. 어떠한 경우에도 '편의성'보단 '안정성'을 우선시합니다. 이러한 특성은 방어적 프로그래밍과 유사하지만, 성능 면에서도 좀 더 빠르고 효율적인 흐름을 가진 기술을 설계하기 위해 작성한 코드를 끊임없이 검토합니다.
+###  [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
 
-'군사 및 국가기관급 보안' 이라는 목표를 가지고 있습니다. 이 목표는 저의 모든 기술 설계에 '아무것도 믿지 말고(Zero-Trust), 독립되어라(Air-Gapped)' 라는 원칙을 자연스레 심어주었습니다. 저는 자신이 지키고자 하는 정보가 어느 누구로부터든 안전하게 지켜졌으면 하는 바램에서 보안 엔지니어링 길을 선택했고, '자신'이라 함은 독립적이지 않을 수 있다는 것을 명확히 하기 때문에 시스템 관점에서 얻을 수 있는 모든 정보의 출처를 믿지 않기로 결정했습니다.
+> EntanglementLib과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 진행 중)
+- **Tech**: Rust, FFI (Foreign Function Interface)
+- **Features**:
+    - 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계. 
+    - Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1에 따른 Hash DRBG 구현.
+    - 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
 
-이런 철학으로 볼 때, 대단하다는 말을 자주 들었지만 스스로 부족한 점을 매일 깨닫습니다. 생각하는 것을 그려내고 모두에게 전달할 수 있도록 매 시간 생각을 멈추지 않으려 노력합니다.
+## Tech Stack & Arsenal
+
+<div align="center">
+
+
+|                                               Languages                                                |                                               Tools & Ecosystems                                                |                                                     DevOps & Infra                                                     |                                                    OS & Arch                                                     |
+|:------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| ![Java](https://img.shields.io/badge/Java_25-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)  |   ![Gradle](https://img.shields.io/badge/Gradle_9.2.0-02303A?style=for-the-badge&logo=gradle&logoColor=white)   |  ![AWS](https://img.shields.io/badge/amazon_Web_services-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)   |      ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)       |
+| ![Rust](https://img.shields.io/badge/Rust_1.93.1-000000?style=for-the-badge&logo=rust&logoColor=white) |    ![Cargo](https://img.shields.io/badge/Cargo_1.93.1-000000?style=for-the-badge&logo=rust&logoColor=white)     |   ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)    | ![Arch Linux](https://img.shields.io/badge/arch_linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white) |
+|    ![Go](https://img.shields.io/badge/Go_1.26.1-00ADD8?style=for-the-badge&logo=go&logoColor=white)    | ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) | ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white) |        ![macos](https://img.shields.io/badge/macos-000000?style=for-the-badge&logo=macos&logoColor=white)        |
+|                                                                                                        |          ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)           |              ![CI/CD](https://img.shields.io/badge/CI%2FCD-Security_Scanning-4D4D4D?style=for-the-badge)               |                                                                                                                  |
+
+</div>
+
+## Philosophy
+
+**최고의 보안은 편의성과 타협하지 않습니다.**  
+저는 시스템 개발의 모든 단계에서 **최고 수준의 보안**과 **안정성 및 성능(Stability & Performance)** 을 최우선 가치로 삼습니다. 방어적 프로그래밍을 바탕으로, 더 빠르고 효율적인 데이터 흐름을 만들어내기 위해 끊임없이 코드를 검토하지만 단순한 편의를 위한 코드는 작성하지 않습니다. 불편함은 더 강한 보안을 위한 대가입니다.
+
+**어떤 데이터든 완벽하게 보호되어야 합니다.**  
+이는 제가 보안 엔지니어링의 길을 선택한 이유입니다. 개인은 결코 완전히 독립적일 수 없다는 점을 전제로 시스템 관점에서 수집되는 모든 정보의 출처를 신뢰하지 않으며, 독립적으로 운용 가능한 구조를 설계해야 하고자 합니다.
+
+목표인 '군사 및 국가기관급 보안'을 달성하기 위해 저의 모든 기술 설계에 *'신뢰를 버리고(Zero-Trust), 고립을 선택하라(Air-Gapped)'* 라는 원칙을 심었습니다.  
+이러한 철학은 아키텍처 설계부터 구현에 이르기까지 모든 과정의 기준이 됩니다.
+매일 부족함을 인식하고 복잡한 추상적 개념을 누구나 이해할 수 있는 견고한 코드를 구현하기 위해 끊임없이 고민해야 합니다.
+
+---
+
+<div align="center">
+  <i>Let's build an uncompromised future.</i><br>
+  <i>Contact: <a href="mailto:qtfelix@qu4nt.space">qtfelix@qu4nt.space</a></i><br>
+  <i><a href="https://qu4nt.space/docs/getting-started/onboarding">Team Quant Onboarding Guide</a></i>
+</div>
