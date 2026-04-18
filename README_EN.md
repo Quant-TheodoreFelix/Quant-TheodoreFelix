@@ -31,21 +31,37 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
 
 ### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
 
-> High-security entanglement library for financial, large-scale enterprise, and military-grade applications (Dec 2025 ~ Present)
+> High-security entanglement library for financial, large-scale enterprise, and military-grade applications (Dec 2025 ~ 2026.04)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
 - **Features**:
     - Engineered the Entanglement Library, designed for security ratings of EAL2 and above for financial and large-scale enterprise applications, and efficiently connected Rust native code using Project Panama's Foreign Function & Memory API.
     - Implemented strict Zero-Trust principles, technically analyzed Java-Owned (JO) and Rust-Owned (RO) data allocation patterns to design secure Off-Heap memory interactions without external dependencies.
     - Applied single bottleneck pass-through technology based on FIPS 140-3 and implemented physical erasure (Zeroization) of sensitive data after performing security operations on the Rust side.
 
-###  [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
+### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
 
-> Native cryptographic module ensuring integrity communication with EntanglementLib (Jan 2026 ~ Present)
+> Native cryptographic module ensuring integrity communication with EntanglementLib (Jan 2026 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
 - **Features**:
     - Built a Foreign Function Interface (FFI) boundary for secure communication with EntanglementLib (Java), and designed sensitive data wrapping structures usable in both JO and RO patterns.
     - Implemented Base64, Hex en/decoding, HKDF, HMAC, SHA-2, 3, SHAKE algorithms, and a Hash DRBG according to NIST SP 800-90Ar1.
     - Implemented a stable CC EAL4 and wrote architectural specifications for EAL5+ extension.
+
+### K0 | `Lead Developer`
+
+> High-security Rust-based microkernel for establishing closed-loop infrastructure (Mar 2026 ~ Present)
+- **Tech**: Rust, Qemu, Docker
+- **Features**:
+  - Designed to isolate services into Ring 3 user space and communicate via IPC using the lightweight `elib-k0-nt` binary of EntanglementLib, which actively supports embedded and `no_std` environments.
+  - Implemented lightweight executable loaders, including an ELF loader.
+  - Adjusted CLI behavior to suit the kernel environment, removing dependencies on standard OS I/O.
+  - Adhered to strict security policies: safe exception handling, memory permission separation (W^X), and Default Deny interrupt policies.
+
+### Project-Poseidon | `Lead Developer`
+
+> AI Agent for vulnerability analysis, reasoning, and remediation in 50k+ line codebases for professional security organizations (Mar 2026 ~ Present)
+- **Tech**: Python, Rust, PostgreSQL, MySQL
+- **Features**: (To be disclosed)
 
 <br>
 

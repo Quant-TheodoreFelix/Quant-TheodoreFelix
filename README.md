@@ -31,21 +31,37 @@
 
 ### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
 
-> 금융 및 대규모 엔터프라이즈, 군사급 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 진행 중)
+> 금융 및 대규모 엔터프라이즈, 군사급 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 2026.04)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
 - **Features**:
     - 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 EAL2 이상의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API로 효율적으로 연결. 
     - 엄격한 Zero-Trust 원칙 구현, Java측 데이터 할당(Java-Owned, JO), Rust측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계. 
     - FIPS 140-3에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
 
-###  [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
+### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
 
-> EntanglementLib과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 진행 중)
+> EntanglementLib과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
 - **Features**:
     - 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계. 
     - Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1에 따른 Hash DRBG 구현.
     - 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
+
+### K0 | `Lead Developer`
+
+> 폐쇄형 인프라 확립을 위한 Rust 바이너리 고보안 마이크로커널 (2026.03 ~ 진행 중)
+- **Tech**: Rust, Qemu, Docker
+- **Features**:
+  - 임베디드, no_std 환경을 적극 지원하는 얽힘 라이브러리의 경량형 `elib-k0-nt` 바이너리를 사용하여 마이크로커널의 Ring 3 사용자 공간(user space) 서비스로 분리하고 IPC로 통신하도록 설계.
+  - ELF 로더 등의 경량화된 실행 파일 로더 구현.
+  - 커널 환경에 맞도록, OS 표준 입출력에 의존하는 CLI 동작 방식 조정.
+  - 안전한 예외 처리, 엄격한 메모리 권한 분리(W^X), 기본 차단(Default Deny) 인터럽트 정책 등 준수.
+
+### Project-Poseidon | `Lead Developer`
+
+> 전문 보안 단체를 위한 5만 줄 이상 코드베이스 보안 취약점 분석-추론-해결 AI 에이전트 (2026.03 ~ 진행 중)
+- **Tech**: Python, Rust, PostgreSQL, MySQL
+- **Features**: (아직 미공개)
 
 ## Tech Stack & Arsenal
 
