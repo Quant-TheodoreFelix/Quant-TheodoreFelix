@@ -30,39 +30,73 @@
 
 ## Key Projects
 
+### [ISO-LIGHT-K0 (K0 Microkernel)](https://github.com/Quant-Off/iso-light-k0) | `Lead Developer`
+
+> 폐쇄형 인프라 확립을 위한 Rust `no_std` 초경량 보안 마이크로커널 (2026.03 ~ 진행 중)
+- **Tech**: Rust, QEMU, Multiboot2, x86_64, Docker
+- **Features**:
+  - **Capability-based Access Control**: 위조 불가 토큰 기반 자원 접근 제어, Hash-DRBG-SHA256(RDSEED/RDRAND 시드) 적용.
+  - **동기 IPC (Rendezvous Model)**: 메시지 패싱 기반 프로세스 간 통신, `EP_CRYPTO` / `EP_SIGN` / `EP_SYSTEM` 엔드포인트 등록.
+  - **메모리 격리**: `unsafe` 최소화, `alloc` 미사용 정적 할당만 사용, 4단계 페이지 테이블, KASLR, W^X 정책, Higher-Half 분리, `CR0.WP` + `CR4.SMEP/SMAP/UMIP` 보안 비트.
+  - **Ring 3 사용자 공간**: 정적 ELF64 로더, `syscall/sysret` ABI, per-CPU `swapgs` + SMAP `stac/clac` 사용자 메모리 검증.
+  - **커널 내장 보안 서비스**: AES-256-GCM, ChaCha20-Poly1305, BLAKE3, SHA-2/3, HKDF, Ed25519/Ed448, X448 DH, ML-DSA-44 청크 프로토콜.
+  - **TLS 1.3 PSK 핸드셰이크**: Closed/External 프로필, `psk_pq_hybrid_ke` (X25519 + ML-KEM-768) 양자 내성 하이브리드 키 교환.
+  - **HSM 추상화 + Soft Keystore 폴백**: `HsmDriver` 트레이트 기반으로 HSM 환경과 정적 풀 PSK Soft Keystore 양쪽에서 동일 코드 경로 재사용, `Provisioned` → `Wiped` 단방향 lifecycle.
+  - **스택 보호**: IST 및 부트 스택 가드 페이지 캐너리, EAL4+ 안전 패닉 핸들러(정보 유출 없는 즉각 halt).
+
+### [elib-k0-nt](https://github.com/Quant-Off/elib-k0-nt) | `Lead Developer`
+
+> ISO-LIGHT-K0 를 위한 `no_std` 기반 폐쇄·방어적 암호 프리미티브 모듈 (2026.03 ~ 진행 중)
+- **Tech**: Rust, `no_std`
+- **Features**:
+  - **독립 구현 원칙**: 각 암호 알고리즘 크레이트가 공유 코어 의존성 없이 독립적으로 구현되어 데이터 흐름이 외부로 누설되지 않도록 설계.
+  - **해시**: SHA-2, SHA-3, SHAKE([FIPS 202](https://csrc.nist.gov/pubs/fips/202/final)), BLAKE2 자체 구현.
+  - **난수**: NIST SP 800-90Ar1 기반 Hash DRBG.
+  - **전자 서명**: Ed25519, Ed448 (컨텍스트 서명 포함).
+  - **키 합의 (KEX)**: X25519, X448.
+  - **AEAD/블록 암호**: AES, ChaCha20-Poly1305.
+  - **양자 내성 암호 (PQC)**: ML-KEM, ML-DSA.
+  - **부채널 방어**: 자체 구현 `constant-time` 연산 모듈 및 다중 아키텍처 대응 `zeroize` 휘발성 소거 로직.
+
+### [Lumen](https://github.com/Quant-Off/lumen) | `Lead Developer`
+
+> 제로 트러스트 환경을 위한 검증 가능한 폐쇄 친화적 AI 에이전트 프레임워크 (2026.04 ~ 진행 중)
+- **Tech**: Rust, `wasmtime`, `candle`, `ezkl` / `halo2`, BLAKE3, Ed25519
+- **Features**:
+  - **하이브리드 zkML 파이프라인**: 비용이 큰 LLM 추론은 TEE 내부에 두고, 도구 라우팅 결정 및 출력 필터링에만 ZKP 를 생성하는 선택적 증명 전략. `Verification::ZkVerified` 와 `Verification::CommitmentOnly` 가 타입 시스템 차원에서 분리.
+  - **권한 분리형 Host-WASM 샌드박스**: 호스트(TEE)는 LLM 추론, 정책 엔진, Capability 발급/검증을 담당하고 WASM 샌드박스는 에이전트 로직, 도구 호출 라우팅, 출력 필터링만 담당. Attested 보안 채널로만 통신.
+  - **Capability 토큰 정책 엔진**: 서명, 만료, audience, nonce 4단 검증, 리플레이 방지 nonce LRU 테이블.
+  - **Attested SecureChannel**: Ed25519 mutual handshake + AES-GCM-256 + X25519 ephemeral KEX, signed framing, $(\text{epoch}, \text{seq})$ 시퀀스로 리플레이 거부.
+  - **결정론적 제어 모듈**: 정수 fixed-point(Q16.16, Q8.24) + BLAKE3 + BTreeMap + wasmtime SIMD off 조합으로 ZKP 재현성 보장.
+  - **고속 방어 및 Provenance**: lexicon/regex/heuristic 기반 jailbreak 방어 엔진, BLAKE3 + Ed25519 provenance 검증, CycloneDX SBOM 자동 생성, 모델 핀 자동 회전(`PinSet`).
+
+### Lumiere | `Lead Developer`
+
+> 중간 규모 코드베이스 보안 취약점 분석-추론-해결 AI 에이전트 (2026.03 ~ 진행 중)
+- **Tech**: Rust, Python, PostgreSQL, MySQL
+- **Features**:
+  - **V2P (Vulnerable-to-Patch) 코어 데이터셋 통합/정제**: 각종 데이터셋 통합·정제, NVD API 기반 `severity` 및 `diff` 정규화, `lang` 표준화 등 약 수백 만 행 규모의 `lumiere-v2p-dset` 구축.
+  - **패치 제안 및 추론 데이터셋, 연쇄 사고(Chain-of-Thought) 데이터셋 구축**: Fine-Tuning + SFT + Multi-Turn 전략 적용을 위한 다단계 데이터셋 설계.
+  - **Agentic Harness**: 최대 ~5만 줄 규모 코드베이스 분석, 잔존 보안 취약점 추론, 패치 제안, 더 나은 설계 제안 능력 제공.
+  - **확장 시나리오**: 웹/애플리케이션 리버스 엔지니어링, 네트워크 패킷·이상 트래픽 감시 등 '수호자' 역할 수행.
+
 ### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
 
-> 금융 및 대규모 엔터프라이즈, 군사급 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 2026.04)
+> 금융 및 대규모 엔터프라이즈 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 2026.04, 정식 릴리스 전 단계)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
 - **Features**:
-    - 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 EAL2 이상의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API로 효율적으로 연결. 
-    - 엄격한 Zero-Trust 원칙 구현, Java측 데이터 할당(Java-Owned, JO), Rust측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계. 
-    - FIPS 140-3에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
+    - 얽힘 라이브러리 엔지니어링, 금융 및 대규모 엔터프라이즈 적용을 위한 높은 수준의 보안 등급 설계, Project Panama 기술을 적용하여 Rust 네이티브를 Foreign Function & Memory API 로 효율적으로 연결.
+    - 엄격한 Zero-Trust 원칙 구현, Java 측 데이터 할당(Java-Owned, JO), Rust 측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계.
+    - FIPS 140-3 에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
 
 ### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
 
-> EntanglementLib과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 2026.04)
+> EntanglementLib 과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
 - **Features**:
-    - 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계. 
-    - Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1에 따른 Hash DRBG 구현.
+    - 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계.
+    - Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1 에 따른 Hash DRBG 구현.
     - 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
-
-### K0 | `Lead Developer`
-
-> 폐쇄형 인프라 확립을 위한 Rust 바이너리 고보안 마이크로커널 (2026.03 ~ 진행 중)
-- **Tech**: Rust, Qemu, Docker
-- **Features**:
-  - 임베디드, no_std 환경을 적극 지원하는 얽힘 라이브러리의 경량형 `elib-k0-nt` 바이너리를 사용하여 마이크로커널의 Ring 3 사용자 공간(user space) 서비스로 분리하고 IPC로 통신하도록 설계.
-  - ELF 로더 등의 경량화된 실행 파일 로더 구현.
-  - 커널 환경에 맞도록, OS 표준 입출력에 의존하는 CLI 동작 방식 조정.
-  - 안전한 예외 처리, 엄격한 메모리 권한 분리(W^X), 기본 차단(Default Deny) 인터럽트 정책 등 준수.
-
-### Project-Poseidon | `Lead Developer`
-
-> 전문 보안 단체를 위한 5만 줄 이상 코드베이스 보안 취약점 분석-추론-해결 AI 에이전트 (2026.03 ~ 진행 중)
-- **Tech**: Python, Rust, PostgreSQL, MySQL
-- **Features**: (아직 미공개)
 
 ## Tech Stack & Arsenal
 

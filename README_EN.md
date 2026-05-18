@@ -30,41 +30,73 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
 
 ## Key Projects
 
+### [ISO-LIGHT-K0 (K0 Microkernel)](https://github.com/Quant-Off/iso-light-k0) | `Lead Developer`
+
+> An ultra-lightweight Rust `no_std` high-security microkernel for establishing closed (air-gapped) infrastructure (2026.03 ~ in progress)
+- **Tech**: Rust, QEMU, Multiboot2, x86_64, Docker
+- **Features**:
+  - **Capability-based Access Control**: Unforgeable token-based resource access control, powered by Hash-DRBG-SHA256 (seeded with RDSEED/RDRAND).
+  - **Synchronous IPC (Rendezvous Model)**: Message-passing inter-process communication with registered endpoints such as `EP_CRYPTO` / `EP_SIGN` / `EP_SYSTEM`.
+  - **Memory Isolation**: Minimal `unsafe`, static allocation only (no `alloc`), 4-level page tables, KASLR, W^X policy, Higher-Half kernel/user separation, and `CR0.WP` + `CR4.SMEP/SMAP/UMIP` security bits.
+  - **Ring 3 User Space**: Static ELF64 loader, `syscall/sysret` ABI, per-CPU `swapgs`, and SMAP `stac/clac` user-memory validation.
+  - **Built-in Kernel Security Services**: AES-256-GCM, ChaCha20-Poly1305, BLAKE3, SHA-2/3, HKDF, Ed25519/Ed448, X448 DH, and the ML-DSA-44 chunked protocol.
+  - **TLS 1.3 PSK Handshake**: Closed/External profiles and `psk_pq_hybrid_ke` (X25519 + ML-KEM-768) post-quantum hybrid key exchange.
+  - **HSM Abstraction + Soft Keystore Fallback**: A single code path is reused across HSM-backed environments and a static-pool PSK Soft Keystore via the `HsmDriver` trait, with a one-way `Provisioned` → `Wiped` lifecycle.
+  - **Stack Protection**: Guard-page canaries on IST and boot stacks, plus an EAL4+ safe panic handler that halts immediately with no information leakage.
+
+### [elib-k0-nt](https://github.com/Quant-Off/elib-k0-nt) | `Lead Developer`
+
+> A `no_std`-based, closed and defensively-engineered cryptographic primitives module for ISO-LIGHT-K0 (2026.03 ~ in progress)
+- **Tech**: Rust, `no_std`
+- **Features**:
+  - **Independent Implementation Principle**: Each cryptographic crate is implemented independently with no shared core dependency, so data flows cannot leak across crate boundaries.
+  - **Hashing**: In-house SHA-2, SHA-3, SHAKE ([FIPS 202](https://csrc.nist.gov/pubs/fips/202/final)), and BLAKE2 implementations.
+  - **RNG**: Hash DRBG per NIST SP 800-90Ar1.
+  - **Digital Signatures**: Ed25519 and Ed448 (including context signatures).
+  - **Key Establishment (KEX)**: X25519, X448.
+  - **AEAD / Block Ciphers**: AES, ChaCha20-Poly1305.
+  - **Post-Quantum Cryptography (PQC)**: ML-KEM, ML-DSA.
+  - **Side-Channel Defense**: An in-house `constant-time` operations module and a multi-architecture-aware `zeroize` volatile-erasure routine.
+
+### [Lumen](https://github.com/Quant-Off/lumen) | `Lead Developer`
+
+> A verifiable, air-gap-friendly AI agent framework for zero-trust environments (2026.04 ~ in progress)
+- **Tech**: Rust, `wasmtime`, `candle`, `ezkl` / `halo2`, BLAKE3, Ed25519
+- **Features**:
+  - **Hybrid zkML Pipeline**: A selective-proof strategy that keeps expensive LLM inference inside a TEE and generates ZKPs only for tool-routing decisions and output filtering. `Verification::ZkVerified` and `Verification::CommitmentOnly` are kept as separate type-system variants by design.
+  - **Privilege-Separated Host-WASM Sandbox**: The host (TEE) handles LLM inference, the policy engine, and Capability issuance/verification, while the WASM sandbox only handles agent logic, tool-call routing, and output filtering. They communicate exclusively over an attested secure channel.
+  - **Capability Token Policy Engine**: Four-stage verification (signature, expiry, audience, nonce) backed by an LRU nonce table to prevent replay.
+  - **Attested SecureChannel**: Ed25519 mutual handshake + AES-GCM-256 + X25519 ephemeral KEX with signed framing, where $(\text{epoch}, \text{seq})$ sequence numbers reject replays.
+  - **Deterministic Control Module**: Integer fixed-point (Q16.16, Q8.24) + BLAKE3 + BTreeMap + wasmtime with SIMD disabled, jointly guaranteeing ZKP reproducibility.
+  - **High-Speed Defense & Provenance**: A jailbreak defense engine driven by lexicon/regex/heuristics, BLAKE3 + Ed25519 provenance verification, automatic CycloneDX SBOM generation, and zero-downtime model-pin rotation (`PinSet`).
+
+### Lumiere | `Lead Developer`
+
+> An AI agent that analyzes, reasons about, and resolves security vulnerabilities in medium-scale codebases (2026.03 ~ in progress)
+- **Tech**: Rust, Python, PostgreSQL, MySQL
+- **Features**:
+  - **V2P (Vulnerable-to-Patch) Core Dataset Integration & Normalization**: Integration and normalization of multiple datasets — including NVD-API-driven backfilling of `severity` and `diff`, and `lang` standardization — producing a `lumiere-v2p-dset` on the order of several million rows.
+  - **Patch-Suggestion / Reasoning & Chain-of-Thought Dataset Construction**: A multi-stage dataset designed for Fine-Tuning, SFT, and Multi-Turn training strategies.
+  - **Agentic Harness**: Capable of analyzing codebases of up to ~50K lines, inferring residual vulnerabilities, suggesting patches, and proposing improved designs.
+  - **Extended Scenarios**: Reverse engineering of web/application targets, plus a "guardian" role monitoring network packets and anomalous traffic.
+
 ### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
 
-> High-security entanglement library for financial, large-scale enterprise, and military-grade applications (Dec 2025 ~ 2026.04)
+> A high-security entanglement library for financial and large-enterprise deployments (2025.12 ~ 2026.04, pre-release stage)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
 - **Features**:
-    - Engineered the Entanglement Library, designed for security ratings of EAL2 and above for financial and large-scale enterprise applications, and efficiently connected Rust native code using Project Panama's Foreign Function & Memory API.
-    - Implemented strict Zero-Trust principles, technically analyzed Java-Owned (JO) and Rust-Owned (RO) data allocation patterns to design secure Off-Heap memory interactions without external dependencies.
-    - Applied single bottleneck pass-through technology based on FIPS 140-3 and implemented physical erasure (Zeroization) of sensitive data after performing security operations on the Rust side.
+  - Engineered an entanglement library with a security-grade design targeting financial and large-enterprise use, leveraging Project Panama to efficiently bridge Rust native code through the Foreign Function & Memory API.
+  - Implemented strict Zero-Trust principles, analyzing Java-Owned (JO) and Rust-Owned (RO) allocation patterns to design safe Off-Heap memory interaction with no external dependencies.
+  - Applied FIPS 140-3-aligned single-bottleneck pass-through and performed physical erasure (zeroization) of sensitive data after security-critical computations on the Rust side.
 
 ### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
 
-> Native cryptographic module ensuring integrity communication with EntanglementLib (Jan 2026 ~ 2026.04)
+> A native cryptographic module that guarantees integrity-preserving communication with EntanglementLib (2026.01 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
 - **Features**:
-    - Built a Foreign Function Interface (FFI) boundary for secure communication with EntanglementLib (Java), and designed sensitive data wrapping structures usable in both JO and RO patterns.
-    - Implemented Base64, Hex en/decoding, HKDF, HMAC, SHA-2, 3, SHAKE algorithms, and a Hash DRBG according to NIST SP 800-90Ar1.
-    - Implemented a stable CC EAL4 and wrote architectural specifications for EAL5+ extension.
-
-### K0 | `Lead Developer`
-
-> High-security Rust-based microkernel for establishing closed-loop infrastructure (Mar 2026 ~ Present)
-- **Tech**: Rust, Qemu, Docker
-- **Features**:
-  - Designed to isolate services into Ring 3 user space and communicate via IPC using the lightweight `elib-k0-nt` binary of EntanglementLib, which actively supports embedded and `no_std` environments.
-  - Implemented lightweight executable loaders, including an ELF loader.
-  - Adjusted CLI behavior to suit the kernel environment, removing dependencies on standard OS I/O.
-  - Adhered to strict security policies: safe exception handling, memory permission separation (W^X), and Default Deny interrupt policies.
-
-### Project-Poseidon | `Lead Developer`
-
-> AI Agent for vulnerability analysis, reasoning, and remediation in 50k+ line codebases for professional security organizations (Mar 2026 ~ Present)
-- **Tech**: Python, Rust, PostgreSQL, MySQL
-- **Features**: (To be disclosed)
-
-<br>
+  - Established FFI boundary communication for safe interop with the EntanglementLib (Java) side, and designed sensitive-data wrapper structures usable under both the JO and RO patterns.
+  - Implemented Base64 and Hex codecs, HKDF, HMAC, SHA-2/3, the SHAKE family, and Hash DRBG per NIST SP 800-90Ar1.
+  - Delivered a stable CC EAL4 implementation and authored the architectural specification for the EAL5+ extension path.
 
 ## Tech Stack & Arsenal
 
