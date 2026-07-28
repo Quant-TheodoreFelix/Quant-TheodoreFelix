@@ -21,19 +21,37 @@
 
 ## Core Competencies
 
-- **컴플라이언스 및 아키텍처**
-  - NIST FIPS 140-2/3 L2~4, CC(Common Criteria) EAL5+ 까지 인증 및 규정 준수 사항을 만족하는 아키텍처 설계가 가능합니다.
+- **컴플라이언스**
+  - NIST FIPS 140-2/3 L2~4, CC(Common Criteria) EAL5+ 까지의 인증 및 규정 준수 사항을 만족하는 기술적 필요 구현 사항, 아키텍처 설계, 정형 문서 작성이 가능합니다.
 - **보안 엔지니어링**
-  - Java JCA/JCE 기능에 대해 높은 이해도를 가집니다. 또한 Rust 언어를 네이티브로 사용하여 메모리 안정성 및 극도의 보안성을 가진 소프트웨어를 개발할 수도 있습니다.
+  - Java JCA/JCE, Project Panama, Heap 관리, 효율적 자료구조, 패턴(디자인) 설계 등 차세대적 기능(술)에 대해 높은 이해도를 가지고 있습니다.
+  - Rust 언어의 응용 능력이 높아 Java에선 이를 네이티브로 사용하기도 했으며, 메모리 안정성 및 극도의 보안성을 가진 소프트웨어를 개발할 수도 있습니다. 예를 들어, 상수-시간 연산이나 소거(zeroize) 로직 설계 등이 있습니다.
 - **양자정보과학기술 연구**
-  - 빠른 습득력과 어릴 때부터 연마한 호기심을 통해 양자정보과학 이론의 기초가 단단합니다. 이는 단 6개월만에 습득한 지혜라고 자부할 수 있습니다.
+  - 빠른 습득력과 오랫동안 연마한 호기심을 통해 선형대수에서 나아가 양자정보과학 이론에 대한 넓은 견문을 가지고 있습니다.
+  - 여러 사람들에게 양자정보과학 관련 정보와 지식을 전달하기 위해 개론서를 만들거나, 학술지를 작성하기도 했습니다. 
 
 ## Key Projects
 
-### [ISO-LIGHT-K0 (K0 Microkernel)](https://github.com/Quant-Off/iso-light-k0) | `Lead Developer`
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/airlock">Airlock</a> | <code>Lead Developer</code></h3></summary>
+
+> AI 코딩 에이전트를 위한 로컬 제로 트러스트 게이트웨이 (2026.07 ~ 진행 중)
+- **Tech**: Rust, Landlock, seccomp, Seatbelt (macOS)
+- **Features**:
+  - **capability 기반 정책 DSL**: TOML 선언적 문법, 자기보호 → 내장 forbid → 사용자 규칙 → 내장 ask/deny → defaults 5단계 티어 순으로 평가하는 결정 엔진.
+  - **커널 강제 샌드박싱**: Linux Landlock(파일, TCP 포트)과 macOS Seatbelt(파일, exec 경로, 아웃바운드 전체)로 에이전트의 파일·프로세스·네트워크 행위를 OS 경계에서 직접 차단.
+  - **seccomp 런타임 중계**: 자식 프로세스의 `execve`/`connect`를 seccomp user notification으로 가로채 감사 로그에 기록, 아키텍처 불일치(x32 등) ABI 우회 차단.
+  - **해시체인 감사 로그**: 변조·순서 변경·중간 삭제·꼬리 절단을 탐지하는 append-only 해시체인, 커널이 실제로 강제한 엔트리와 단순 관찰(observe) 엔트리를 구분.
+  - **`/dev/tty` 인라인 승인**: 위험 행위에 대한 사람 승인 요청, 응답 상한(300초) 초과 시 자동 거부로 감독 스레드 교착 방지.
+  - **투명한 한계 고지**: 경로 정규화(traversal, 심볼릭 링크, 대소문자 우회) 전담 크레이트(`airlock-canonical`) 분리, 강제되지 않는 항목을 세션 시작 시 배너로 스스로 명시.
+
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/iso-light-k0">ISO-LIGHT-K0 (K0 Microkernel)</a> | <code>Lead Developer</code></h3></summary>
 
 > 폐쇄형 인프라 확립을 위한 Rust `no_std` 초경량 보안 마이크로커널 (2026.03 ~ 진행 중)
-- **Tech**: Rust, QEMU, Multiboot2, x86_64, Docker
+- **Tech**: Rust, QEMU, Multiboot2, x86(64), Arm(64), Docker
 - **Features**:
   - **Capability-based Access Control**: 위조 불가 토큰 기반 자원 접근 제어, Hash-DRBG-SHA256(RDSEED/RDRAND 시드) 적용.
   - **동기 IPC (Rendezvous Model)**: 메시지 패싱 기반 프로세스 간 통신, `EP_CRYPTO` / `EP_SIGN` / `EP_SYSTEM` 엔드포인트 등록.
@@ -44,10 +62,13 @@
   - **HSM 추상화 + Soft Keystore 폴백**: `HsmDriver` 트레이트 기반으로 HSM 환경과 정적 풀 PSK Soft Keystore 양쪽에서 동일 코드 경로 재사용, `Provisioned` → `Wiped` 단방향 lifecycle.
   - **스택 보호**: IST 및 부트 스택 가드 페이지 캐너리, EAL4+ 안전 패닉 핸들러(정보 유출 없는 즉각 halt).
 
-### [elib-k0-nt](https://github.com/Quant-Off/elib-k0-nt) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/elib-k0-nt">elib-k0-nt</a> | <code>Lead Developer</code></h3></summary>
 
 > ISO-LIGHT-K0 를 위한 `no_std` 기반 폐쇄·방어적 암호 프리미티브 모듈 (2026.03 ~ 진행 중)
-- **Tech**: Rust, `no_std`
+- **Tech**: Rust, `no_std`, **다양한 암호 알고리즘**
 - **Features**:
   - **독립 구현 원칙**: 각 암호 알고리즘 크레이트가 공유 코어 의존성 없이 독립적으로 구현되어 데이터 흐름이 외부로 누설되지 않도록 설계.
   - **해시**: SHA-2, SHA-3, SHAKE([FIPS 202](https://csrc.nist.gov/pubs/fips/202/final)), BLAKE2 자체 구현.
@@ -58,7 +79,10 @@
   - **양자 내성 암호 (PQC)**: ML-KEM, ML-DSA.
   - **부채널 방어**: 자체 구현 `constant-time` 연산 모듈 및 다중 아키텍처 대응 `zeroize` 휘발성 소거 로직.
 
-### [Lumen](https://github.com/Quant-Off/lumen) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/lumen">Lumen</a> | <code>Lead Developer</code></h3></summary>
 
 > 제로 트러스트 환경을 위한 검증 가능한 폐쇄 친화적 AI 에이전트 프레임워크 (2026.04 ~ 진행 중)
 - **Tech**: Rust, `wasmtime`, `candle`, `ezkl` / `halo2`, BLAKE3, Ed25519
@@ -70,7 +94,10 @@
   - **결정론적 제어 모듈**: 정수 fixed-point(Q16.16, Q8.24) + BLAKE3 + BTreeMap + wasmtime SIMD off 조합으로 ZKP 재현성 보장.
   - **고속 방어 및 Provenance**: lexicon/regex/heuristic 기반 jailbreak 방어 엔진, BLAKE3 + Ed25519 provenance 검증, CycloneDX SBOM 자동 생성, 모델 핀 자동 회전(`PinSet`).
 
-### Lumiere | `Lead Developer`
+</details>
+
+<details>
+<summary><h3>Lumiere | <code>Lead Developer</code></h3></summary>
 
 > 중간 규모 코드베이스 보안 취약점 분석-추론-해결 AI 에이전트 (2026.03 ~ 진행 중)
 - **Tech**: Rust, Python, PostgreSQL, MySQL
@@ -80,7 +107,10 @@
   - **Agentic Harness**: 최대 ~5만 줄 규모 코드베이스 분석, 잔존 보안 취약점 추론, 패치 제안, 더 나은 설계 제안 능력 제공.
   - **확장 시나리오**: 웹/애플리케이션 리버스 엔지니어링, 네트워크 패킷·이상 트래픽 감시 등 '수호자' 역할 수행.
 
-### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/entanglementlib">EntanglementLib (Java)</a> | <code>Lead Developer</code></h3></summary>
 
 > 금융 및 대규모 엔터프라이즈 적용을 위한 고보안 얽힘 라이브러리 (2025.12 ~ 2026.04, 정식 릴리스 전 단계)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
@@ -89,7 +119,10 @@
     - 엄격한 Zero-Trust 원칙 구현, Java 측 데이터 할당(Java-Owned, JO), Rust 측 데이터 할당(Rust-Owned, RO) 패턴을 기술적으로 분석하여 외부 의존성 없이 안전한 Off-Heap 메모리 상호 작용 설계.
     - FIPS 140-3 에 의거한 단일 병목점 통과 기술 적용 및 Rust 측 보안 연산 수행 후 민감 데이터에 대한 물리적 소거(Zeroization) 구현.
 
-### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/entlib-native">entlib-native (Rust)</a> | <code>Lead Developer</code></h3></summary>
 
 > EntanglementLib 과의 무결성 통신을 보장하는 네이티브 암호화 모듈 (2026.01 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
@@ -97,6 +130,8 @@
     - 얽힘 라이브러리(Java) 와의 안전한 통신을 위해 Foreign Function Interface(FFI) 경계 통신 구축, JO, RO 각 패턴에서 사용 가능한 민감 데이터 래핑 구조체 설계.
     - Base64, Hex 인/디코딩, HKDF, HMAC, SHA-2, 3, SHAKE 알고리즘, NIST SP 800-90Ar1 에 따른 Hash DRBG 구현.
     - 안정적인 CC EAL4 구현, EAL5+ 확장을 위한 아키텍처 명세 작성.
+
+</details>
 
 ## Tech Stack & Arsenal
 
@@ -115,10 +150,10 @@
 ## Philosophy
 
 **최고의 보안은 편의성과 타협하지 않습니다.**  
-저는 시스템 개발의 모든 단계에서 **최고 수준의 보안**과 **안정성 및 성능(Stability & Performance)** 을 최우선 가치로 삼습니다. 방어적 프로그래밍을 바탕으로, 더 빠르고 효율적인 데이터 흐름을 만들어내기 위해 끊임없이 코드를 검토하지만 단순한 편의를 위한 코드는 작성하지 않습니다. 불편함은 더 강한 보안을 위한 대가입니다.
+저는 시스템 개발의 모든 단계에서 **최고 수준의 보안**과 **안정성 및 성능**(Stability & Performance)을 최우선 가치로 삼습니다. 방어적 프로그래밍을 바탕으로, 더 빠르고 효율적인 데이터 흐름을 만들어내기 위해 끊임없이 코드를 검토하지만 여러 개발자를 위한(단순한 편의를 위한) 코드는 작성하지 않습니다. 불편함은 더 강한 보안을 위한 대가입니다.
 
 **어떤 데이터든 완벽하게 보호되어야 합니다.**  
-이는 제가 보안 엔지니어링의 길을 선택한 이유입니다. 개인은 결코 완전히 독립적일 수 없다는 점을 전제로 시스템 관점에서 수집되는 모든 정보의 출처를 신뢰하지 않으며, 독립적으로 운용 가능한 구조를 설계해야 하고자 합니다.
+이는 제가 보안 엔지니어링의 길을 선택한 이유입니다. 개인은 결코 완전히 독립적일 수 없다는 점을 전제로 시스템 관점에서 수집되는 모든 정보의 출처를 신뢰하지 않으며, 독립적으로 운용 가능한 구조를 설계해야 하고자 합니다. 자신이 지키고자 할 환경이 있다면 확실하게 지켜내야 합니다. 어떤 경우든, 여러분과 여러분의 팀원을 제외한 사람들로부터 데이터를 온전히 지켜내어야 합니다.
 
 목표인 '군사 및 국가기관급 보안'을 달성하기 위해 저의 모든 기술 설계에 *'신뢰를 버리고(Zero-Trust), 고립을 선택하라(Air-Gapped)'* 라는 원칙을 심었습니다.  
 이러한 철학은 아키텍처 설계부터 구현에 이르기까지 모든 과정의 기준이 됩니다.

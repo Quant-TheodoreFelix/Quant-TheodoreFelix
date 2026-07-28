@@ -21,19 +21,37 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
 
 ## Core Competencies
 
-- **Compliance & Architecture**
-    - Capable of designing architectures that meet certification and compliance requirements up to NIST FIPS 140-2/3 L2~4 and Common Criteria (CC) EAL5+.
+- **Compliance**
+    - Capable of implementing the technical requirements, architecture design, and formal documentation needed to satisfy certification and compliance requirements up to NIST FIPS 140-2/3 L2~4 and Common Criteria (CC) EAL5+.
 - **Security Engineering**
-    - Possess a deep understanding of Java JCA/JCE functionalities. Also capable of developing software with memory safety and extreme security using Rust natively.
+    - Possess a deep understanding of next-generation capabilities such as Java JCA/JCE, Project Panama, heap management, efficient data structures, and design-pattern engineering.
+    - Highly proficient in Rust — have used it natively from Java as well — and capable of developing software with memory safety and extreme security, including constant-time operations and zeroize-logic design.
 - **Quantum Information Science & Technology Research**
-    - Have a solid foundation in quantum information science theory, thanks to rapid learning abilities and a curiosity honed from a young age. I am confident in calling this wisdom acquired in just six months.
+    - Through rapid learning ability and a curiosity honed over a long time, I have broad knowledge of quantum information science theory, building outward from a foundation in linear algebra.
+    - Have also written introductory books and academic papers to share quantum information science knowledge with others.
 
 ## Key Projects
 
-### [ISO-LIGHT-K0 (K0 Microkernel)](https://github.com/Quant-Off/iso-light-k0) | `Lead Developer`
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/airlock">Airlock</a> | <code>Lead Developer</code></h3></summary>
+
+> A local zero-trust gateway for AI coding agents (2026.07 ~ in progress)
+- **Tech**: Rust, Landlock, seccomp, Seatbelt (macOS)
+- **Features**:
+  - **Capability-based Policy DSL**: A declarative TOML syntax with a decision engine that evaluates five tiers in order: self-protection -> built-in forbid -> user rules -> built-in ask/deny -> defaults.
+  - **Kernel-Enforced Sandboxing**: Blocks an agent's file, process, and network behavior directly at the OS boundary via Linux Landlock (files, TCP ports) and macOS Seatbelt (files, exec paths, all outbound traffic).
+  - **seccomp Runtime Relay**: Intercepts a child process's `execve`/`connect` calls via seccomp user notifications and records them to the audit log, blocking ABI bypass through architecture mismatches (e.g., x32).
+  - **Hash-Chain Audit Log**: An append-only hash chain that detects tampering, reordering, mid-log deletion, and tail truncation, distinguishing entries the kernel actually enforced from entries that were merely observed.
+  - **`/dev/tty` Inline Approval**: Requests human approval for risky actions, with an automatic denial past a response timeout (300 seconds) to prevent the supervisor thread from deadlocking.
+  - **Transparent Disclosure of Limits**: Path canonicalization (traversal, symlinks, case-bypass) is isolated into its own crate (`airlock-canonical`), and any unenforced items are declared in a banner at session start.
+
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/iso-light-k0">ISO-LIGHT-K0 (K0 Microkernel)</a> | <code>Lead Developer</code></h3></summary>
 
 > An ultra-lightweight Rust `no_std` high-security microkernel for establishing closed (air-gapped) infrastructure (2026.03 ~ in progress)
-- **Tech**: Rust, QEMU, Multiboot2, x86_64, Docker
+- **Tech**: Rust, QEMU, Multiboot2, x86(64), Arm(64), Docker
 - **Features**:
   - **Capability-based Access Control**: Unforgeable token-based resource access control, powered by Hash-DRBG-SHA256 (seeded with RDSEED/RDRAND).
   - **Synchronous IPC (Rendezvous Model)**: Message-passing inter-process communication with registered endpoints such as `EP_CRYPTO` / `EP_SIGN` / `EP_SYSTEM`.
@@ -44,10 +62,13 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - **HSM Abstraction + Soft Keystore Fallback**: A single code path is reused across HSM-backed environments and a static-pool PSK Soft Keystore via the `HsmDriver` trait, with a one-way `Provisioned` → `Wiped` lifecycle.
   - **Stack Protection**: Guard-page canaries on IST and boot stacks, plus an EAL4+ safe panic handler that halts immediately with no information leakage.
 
-### [elib-k0-nt](https://github.com/Quant-Off/elib-k0-nt) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/elib-k0-nt">elib-k0-nt</a> | <code>Lead Developer</code></h3></summary>
 
 > A `no_std`-based, closed and defensively-engineered cryptographic primitives module for ISO-LIGHT-K0 (2026.03 ~ in progress)
-- **Tech**: Rust, `no_std`
+- **Tech**: Rust, `no_std`, **a variety of cryptographic algorithms**
 - **Features**:
   - **Independent Implementation Principle**: Each cryptographic crate is implemented independently with no shared core dependency, so data flows cannot leak across crate boundaries.
   - **Hashing**: In-house SHA-2, SHA-3, SHAKE ([FIPS 202](https://csrc.nist.gov/pubs/fips/202/final)), and BLAKE2 implementations.
@@ -58,7 +79,10 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - **Post-Quantum Cryptography (PQC)**: ML-KEM, ML-DSA.
   - **Side-Channel Defense**: An in-house `constant-time` operations module and a multi-architecture-aware `zeroize` volatile-erasure routine.
 
-### [Lumen](https://github.com/Quant-Off/lumen) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/lumen">Lumen</a> | <code>Lead Developer</code></h3></summary>
 
 > A verifiable, air-gap-friendly AI agent framework for zero-trust environments (2026.04 ~ in progress)
 - **Tech**: Rust, `wasmtime`, `candle`, `ezkl` / `halo2`, BLAKE3, Ed25519
@@ -70,7 +94,10 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - **Deterministic Control Module**: Integer fixed-point (Q16.16, Q8.24) + BLAKE3 + BTreeMap + wasmtime with SIMD disabled, jointly guaranteeing ZKP reproducibility.
   - **High-Speed Defense & Provenance**: A jailbreak defense engine driven by lexicon/regex/heuristics, BLAKE3 + Ed25519 provenance verification, automatic CycloneDX SBOM generation, and zero-downtime model-pin rotation (`PinSet`).
 
-### Lumiere | `Lead Developer`
+</details>
+
+<details>
+<summary><h3>Lumiere | <code>Lead Developer</code></h3></summary>
 
 > An AI agent that analyzes, reasons about, and resolves security vulnerabilities in medium-scale codebases (2026.03 ~ in progress)
 - **Tech**: Rust, Python, PostgreSQL, MySQL
@@ -80,7 +107,10 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - **Agentic Harness**: Capable of analyzing codebases of up to ~50K lines, inferring residual vulnerabilities, suggesting patches, and proposing improved designs.
   - **Extended Scenarios**: Reverse engineering of web/application targets, plus a "guardian" role monitoring network packets and anomalous traffic.
 
-### [EntanglementLib (Java)](https://github.com/Quant-Off/entanglementlib) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/entanglementlib">EntanglementLib (Java)</a> | <code>Lead Developer</code></h3></summary>
 
 > A high-security entanglement library for financial and large-enterprise deployments (2025.12 ~ 2026.04, pre-release stage)
 - **Tech**: Java 25, Gradle 9.2.0 (Kotlin DSL), Project Panama (Foreign Function & Memory API)
@@ -89,7 +119,10 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - Implemented strict Zero-Trust principles, analyzing Java-Owned (JO) and Rust-Owned (RO) allocation patterns to design safe Off-Heap memory interaction with no external dependencies.
   - Applied FIPS 140-3-aligned single-bottleneck pass-through and performed physical erasure (zeroization) of sensitive data after security-critical computations on the Rust side.
 
-### [entlib-native (Rust)](https://github.com/Quant-Off/entlib-native) | `Lead Developer`
+</details>
+
+<details>
+<summary><h3><a href="https://github.com/Quant-Off/entlib-native">entlib-native (Rust)</a> | <code>Lead Developer</code></h3></summary>
 
 > A native cryptographic module that guarantees integrity-preserving communication with EntanglementLib (2026.01 ~ 2026.04)
 - **Tech**: Rust, FFI (Foreign Function Interface)
@@ -97,6 +130,8 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
   - Established FFI boundary communication for safe interop with the EntanglementLib (Java) side, and designed sensitive-data wrapper structures usable under both the JO and RO patterns.
   - Implemented Base64 and Hex codecs, HKDF, HMAC, SHA-2/3, the SHAKE family, and Hash DRBG per NIST SP 800-90Ar1.
   - Delivered a stable CC EAL4 implementation and authored the architectural specification for the EAL5+ extension path.
+
+</details>
 
 ## Tech Stack & Arsenal
 
@@ -117,10 +152,10 @@ I am a lead developer at **Team Quant**, redefining the paradigm of security in 
 ## Philosophy
 
 **The highest level of security does not compromise with convenience.**
-I prioritize **top-tier security** and **stability & performance** at every stage of system development. Based on defensive programming, I continuously review code to create faster and more efficient data flows, but I never write code solely for convenience. Discomfort is the price paid for stronger security.
+I prioritize **top-tier security** and **stability & performance** at every stage of system development. Based on defensive programming, I continuously review code to create faster and more efficient data flows, but I never write code for the sake of convenience for other developers. Discomfort is the price paid for stronger security.
 
 **All data must be protected without exception.**
-This is why I chose the path of security engineering. Recognizing that individuals can never be completely independent, I do not trust the origin of any information collected from a system perspective, and I strive to design architectures that can operate independently.
+This is why I chose the path of security engineering. Recognizing that individuals can never be completely independent, I do not trust the origin of any information collected from a system perspective, and I strive to design architectures that can operate independently. If you have an environment worth protecting, you must protect it completely. Under any circumstances, data must be kept fully secure from everyone except you and your teammates.
 
 To achieve my goal of **military- and government-grade security**, I embed the principle of *“Abandon trust (Zero-Trust), Choose isolation (Air-Gapped)”* into all of my technical designs.
 This philosophy serves as the foundation for every stage, from architecture design to implementation.
