@@ -15,7 +15,7 @@
 
 Abandon trust. Choose isolation.
 
-I am the Chief Information Security Officer (CISO) of **Qu4nt Space**, redefining the paradigm of security in response to the advancements in information and communication technology, the rapid spread of artificial intelligence (AI), and the rise of quantum computing. I focus on building future-oriented security solutions through high-security infrastructure, compliance, the secure implementation of classical and Post-Quantum Cryptography (PQC) algorithms, and Zero-Trust-based AI agent security technology.
+I am the Chief Information Security Officer (CISO) of **Quant Space**, redefining the paradigm of security in response to the advancements in information and communication technology, the rapid spread of artificial intelligence (AI), and the rise of quantum computing. I focus on building future-oriented security solutions through high-security infrastructure, compliance, the secure implementation of classical and Post-Quantum Cryptography (PQC) algorithms, and Zero-Trust-based AI agent security technology.
 
 [![GitHub Streak](https://streak-stats.demolab.com?user=Quant-TheodoreFelix&theme=github-dark-blue&hide_border=true&locale=en&mode=weekly&card_width=1024)](https://streak-stats.demolab.com/demo/?user=Quant-TheodoreFelix&theme=github-dark-blue&hide_border=true&border_radius=4.5&locale=en&short_numbers=false&date_format=&mode=weekly&exclude_days=&sections=total%2Ccurrent%2Clongest&card_width=1024&card_height=195&type=svg&background-type=solid&properties=background)
 
